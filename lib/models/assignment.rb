@@ -1,7 +1,8 @@
 class Assignment
 
-  def initialize(path)
-    @path = path
+  def initialize(path, basepath)
+    @basepath = basepath
+    @path = "#{basepath}/#{path}"
   end
 
   def passing?
@@ -25,10 +26,14 @@ class Assignment
   end
 
   def results
-    @results_hash || "No results found. Try .run_test! and then re-run this method."
+    @results_hash# || "No results found. Try .run_test! and then re-run this method."
   end
 
   def run_test!
+    # figure out how to cd into directory each time
+    Dir.chdir(@path)
+    # system("bundle") if File.exists?("Gemfile")
+
     RSpec.configure { |c| c.add_formatter(:json) }
     config = RSpec.configuration
 
@@ -45,7 +50,8 @@ class Assignment
 
     # output test result as json
     @results_hash = json_formatter.output_hash
+
+    Dir.chdir(@basepath)
   end
 
 end
-
