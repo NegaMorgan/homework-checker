@@ -5,19 +5,23 @@ class Assignment
   end
 
   def passing?
-    self.results[:summary][:failure_count] == 0
+    failure_count == 0
   end
 
   def partially_passing?
-    !passing? && results[:summary][:example_count] > results[:summary][:failure_count]
+    !passing? && results[:summary][:example_count] > failure_count
   end
 
   def pending?
-    self.results[:summary][:pending_count] > 0
+    results[:summary][:pending_count] > 0
   end
 
   def failing?
-    self.results[:summary][:failure_count] > 0
+    failure_count > 0
+  end
+
+  def failure_count
+    results[:summary][:failure_count]
   end
 
   def results
@@ -42,6 +46,6 @@ class Assignment
     # output test result as json
     @results_hash = json_formatter.output_hash
   end
-  
+
 end
 
