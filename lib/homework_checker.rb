@@ -23,7 +23,9 @@ class HomeworkChecker
       #binding.pry
       puts directory
       if Dir.exists?(directory)
-        RSpec::Core::Runner.run([directory], "hw-status/#{directory}/errors.html", "hw-status/#{directory}/output.html")
+        d = Assignment.new(directory)
+        binding.pry
+        #RSpec::Core::Runner.run([directory], "hw-status/#{directory}/errors.html", "hw-status/#{directory}/output.html")
       end
     end
   end
