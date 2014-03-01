@@ -19,7 +19,7 @@ describe "HomeworkChecker" do
   end
 
   it "can index a directory" do
-    expect(homework_path.index).to be_an(Array)
+    expect(homework_path.index!).to be_an(Array)
   end
 
 end

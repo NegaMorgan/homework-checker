@@ -32,7 +32,7 @@ class Assignment
   def run_test!
     # figure out how to cd into directory each time
     Dir.chdir(@path)
-    # system("bundle") if File.exists?("Gemfile")
+    system("bundle") if File.exists?("Gemfile")
 
     RSpec.configure { |c| c.add_formatter(:json) }
     config = RSpec.configuration

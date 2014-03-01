@@ -2,7 +2,7 @@ class HomeworkChecker
   def initialize(path_to_homework)
     @path = path_to_homework
   end
-  def index
+  def index!
     # So, I will:
     # 1. crawl /Sites and index 004 directories
     # 2. loop through and run rspec on each
@@ -25,14 +25,14 @@ class HomeworkChecker
         #binding.pry
 
         #temporary, until I figure out the right way to bundle from code
-        unless File.exists?("#{directory}/Gemfile")
+        #unless File.exists?("#{directory}/Gemfile")
           d.run_test!
           if d.passing?
             "Woohoo, #{directory} is done!!"
           else
             "A dog must've eaten it #{directory}..."
           end
-        end
+        #end
       end
     end
   end
